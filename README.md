@@ -1,69 +1,31 @@
-# React + TypeScript + Vite
+# Página de login e registro
+Este projeto é uma aplicação de login e registro desenvolvida com **React**, **TypeScript** e **Tailwind CSS**, como parte do curso da [DIO](https://www.dio.me/). O objetivo principal foi praticar a integração dessas tecnologias na construção de uma interface moderna e responsiva, reforçando conceitos de autenticação e gerenciamento de estado no front-end.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologias utilizadas
 
-Currently, two official plugins are available:
+* **React**: Biblioteca JavaScript para criação de interfaces de usuário baseadas em componentes reutilizáveis.  
+* **Tailwind CSS**: Framework CSS "utility-first" que permite criar layouts modernos e responsivos diretamente no JSX, de forma rápida e consistente.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Lógica do projeto
 
-## Expanding the ESLint configuration
+A lógica do projeto é simples: os usuários são registrados e armazenados diretamente no **localStorage** do navegador. No login, a aplicação recupera esses dados e verifica se as credenciais digitadas correspondem a algum usuário salvo. Não há backend envolvido, essa abordagem foi escolhida para fins de estudo.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Próximos passos
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Página de usuário logado**: Criar uma nova página acessível somente após o login, onde o usuário possa visualizar suas informações e também ter a opção de sair da conta (logout).
+* **Estilização**: Refinar o design atual, já que algumas partes ainda estão incompletas ou simples demais, garantindo uma experiência mais consistente e agradável.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Como executar o projeto  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone o repositório:  
+```bash
+git clone https://github.com/paulotruly/dio_typescriptLogin/
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Certifique-se de ter o Node.js instalado e baixe as dependências:  
+```bash
+npm install
+```
+3. Execute o projeto:  
+```bash
+npm run dev
 ```
