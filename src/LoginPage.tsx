@@ -1,7 +1,35 @@
 import InputContainer from "./InputContainer"
 import { Link } from "react-router-dom"
+import { use, useState } from "react"
+
+type User = {
+  username: string;
+  password: string;
+}
 
 function LoginPage() {
+    const [userlogin, setUserlogin] = useState('')
+    const [userpassword, setUserpassword] = useState('')
+    const [success, setSuccess] = useState('')
+    const [error, setError] = useState('')
+
+    function handleSubmit() {
+      const storedData = localStorage.getItem("userList")
+      const userList: User[] = storedData ? JSON.parse(storedData) : []
+    
+      // procurando usuário com o mesmo nome e senha
+      const found = userList.find(
+        (user) => user.username === userlogin && user.password === userpassword
+      )
+
+      if (found) {
+        setError("")
+        setSuccess("Login realizado com sucesso!")
+      } else {
+        setSuccess("")
+        setError("Nome de usuário ou senha errados!")
+      }
+    }
 
   return (
 
@@ -16,17 +44,24 @@ function LoginPage() {
 
             <h1 className="mr-auto font-bold text-[60px] text-white mb-12"> Welcome! </h1>
           
+            {error && <p className="text-black text-[12px] text-center p-2 bg-red-300 w-full rounded-full">{error}</p>}
+            {success && <p className="text-black text-[12px] text-center p-2 bg-green-300 w-full rounded-full">{success}</p>}
+
             <InputContainer
+            type="text"
             icon="user"
             htmlTo="userInput"
             placeholderText="You're name"
+            onChange={(e) => setUserlogin(e.target.value)}
             >
             </InputContainer>
 
             <InputContainer
+            type="password"
             icon="password"
             htmlTo="passwordInput"
             placeholderText="You're password"
+            onChange={(e) => setUserpassword(e.target.value)}
             >
             </InputContainer>
 
@@ -34,7 +69,8 @@ function LoginPage() {
               <button
               
               className="bg-gradient-to-r text-blue-600 from-yellow-300 to-orange-400 
-              text-md  rounded-full w-auto px-10 py-2 shadow-lg hover:scale-105 hover:transition-transform">
+              text-md  rounded-full w-auto px-10 py-2 shadow-lg hover:scale-105 hover:transition-transform"
+              onClick={handleSubmit}>  
                 Entrar
               </button>
 

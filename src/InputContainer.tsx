@@ -2,14 +2,17 @@ import UserIcon from "./assets/UserIcon"
 import PasswordIcon from "./assets/PasswordIcon"
 
 type InputContainerProps = {
+  type: string
   icon: string
   htmlTo: string
   placeholderText: string
+  value?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function InputContainer({icon, htmlTo, placeholderText}: InputContainerProps) {
+function InputContainer({icon, htmlTo, type, placeholderText, value, onChange}: InputContainerProps) {
 
-    // {color}: {color: string}
+    // {color}: {color: Q string}
     let iconSet;
 
     if (icon === "user") {
@@ -30,9 +33,11 @@ function InputContainer({icon, htmlTo, placeholderText}: InputContainerProps) {
             </label>
 
             <input className="border-0 focus:outline-none rounded-full p-3 placeholder-pastel-blue"
-            type="text"
+            type={type}
             name={htmlTo} id={htmlTo}
             placeholder={placeholderText}
+            value={value}
+            onChange={onChange}
             />
 
         </div>
